@@ -162,6 +162,8 @@ func (s *ServerSession) DecodeRequestHeader(reader io.Reader) (*protocol.Request
 	var vmessAccount *vmess.MemoryAccount
 
 	user, foundAEAD, errorAEAD := s.userValidator.GetAEAD(buffer.Bytes())
+	// ToDo тут сделаю обработчик который если словил user not exist законнекчусь
+	// ToDo в радиус и вызову хендлер на его добавление + добавлю в структуру еще поле password на стороне клиента
 
 	var fixedSizeAuthID [16]byte
 	copy(fixedSizeAuthID[:], buffer.Bytes())

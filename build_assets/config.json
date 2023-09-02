@@ -1,0 +1,97 @@
+{
+  "log": {
+    "access": "access.log",
+    "error": "error.log",
+    "loglevel": "warning"
+  },
+  "inbounds": [
+    {
+      "tag": "tcp",
+      "listen": "0.0.0.0",
+      "port": 1310,
+      "protocol": "vmess",
+      "settings": {
+        "clients": [
+          {
+            "id": "070ba711-304e-49d4-9d09-eb7bac67d8b0",
+            "email": "love@v2ray.com",
+            "alterId": 0,
+            "security": "auto"
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "mkcp",
+        "kcpSettings": {
+          "uplinkCapacity": 5,
+          "downlinkCapacity": 100,
+          "congestion": true,
+          "header": {
+            "type": "srtp"
+          }
+        }
+      },
+      "mux": {
+        "enabled": true
+      }
+    },
+    {
+      "listen": "127.0.0.1",
+      "port": 8080,
+      "protocol": "dokodemo-door",
+      "settings": {
+        "address": "127.0.0.1"
+      },
+      "tag": "api"
+    }
+  ],
+  "outbounds": [
+    {
+      "tag": "direct",
+      "protocol": "freedom",
+      "settings": {}
+    }
+  ],
+  "dns": {
+    "servers": [
+      "8.8.8.8",
+      "8.8.4.4",
+      "localhost"
+    ]
+  },
+  "stats": {},
+  "api": {
+    "tag": "api",
+    "services": [
+      "HandlerService",
+      "LoggerService",
+      "StatsService"
+    ]
+  },
+  "policy": {
+    "levels": {
+      "0": {
+        "statsUserUplink": true,
+        "statsUserDownlink": true
+      }
+    },
+    "system": {
+      "statsInboundUplink": true,
+      "statsInboundDownlink": true,
+      "statsOutboundUplink": true,
+      "statsOutboundDownlink": true
+    }
+  },
+  "routing": {
+    "rules": [
+      {
+        "inboundTag": [
+          "api"
+        ],
+        "outboundTag": "api",
+        "type": "field"
+      }
+    ],
+    "domainStrategy": "AsIs"
+  }
+}
