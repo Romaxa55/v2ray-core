@@ -40,9 +40,9 @@
       "streamSettings": {
         "network": "tcp",
         "security": "none",
-        "tcpSettings": {
-          "header": {
-            "type": "none"
+        "wsSettings": {
+          "headers": {},
+          "path": "/ws/"
         }
       },
       "tag": "1310"
