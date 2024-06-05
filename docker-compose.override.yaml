@@ -2,8 +2,7 @@ version: '3.8'
 
 services:
   v2ray:
-    ports:
-      - "8282:8443"
+    ports: []
     volumes:
       - ./build_assets/template.json:/etc/v2ray/template.json
     networks:

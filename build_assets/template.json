@@ -77,6 +77,13 @@
       },
       {
         "ip": [
+          "10.10.10.0/24"
+        ],
+        "outboundTag": "direct",
+        "type": "field"
+      },
+      {
+        "ip": [
           "geoip:private"
         ],
         "outboundTag": "blocked",
