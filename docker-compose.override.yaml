@@ -2,7 +2,8 @@ version: '3.8'
 
 services:
   v2ray:
-    ports: []
+    ports:
+      - "8282:8443"
     networks:
       - public
     volumes:
