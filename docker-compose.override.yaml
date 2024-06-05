@@ -21,6 +21,6 @@ services:
       traefik.http.routers.v2ray.middlewares: websocket-headers
 
 networks:
-  traefik_network:
+  public:
     external:
       name: public
