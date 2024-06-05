@@ -14,7 +14,7 @@ services:
       traefik.http.routers.v2ray.entrypoints: websecure
       traefik.http.routers.v2ray.tls.certresolver: myresolver
       traefik.http.services.v2ray.loadbalancer.server.port: 8443
-      traefik.http.middlewares.websocket.headers.customrequestheaders.Upgrade: websocket
+#      traefik.http.middlewares.websocket.headers.customrequestheaders.Upgrade: websocket
 #      traefik.http.middlewares.websocket.headers.customrequestheaders.Connection: Upgrade
 #      traefik.http.routers.v2ray.middlewares: websocket
 
