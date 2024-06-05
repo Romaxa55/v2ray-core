@@ -35,15 +35,14 @@
           "http",
           "tls"
         ],
-        "enabled": true
+        "enabled": false
       },
       "streamSettings": {
-        "network": "tcp",
+        "network": "ws",
         "security": "none",
-        "tcpSettings": {
-          "header": {
-            "type": "none"
-          }
+        "wsSettings": {
+          "headers": {},
+          "path": "/media/cam_stream_1"
         }
       },
       "tag": "1310"
