@@ -1,0 +1,87 @@
+{
+    "log": {
+        "access": "/dev/stdout",
+        "error": "/dev/stderr",
+        "loglevel": "warning"
+    },
+    "inbounds": [
+        {
+            "tag": "tcp",
+            "listen": "127.0.0.1",
+            "port": 8443,
+            "protocol": "vmess",
+            "settings": {
+                "clients": []
+            },
+            "streamSettings": {
+                "network": "ws",
+                "security": "none",
+                "wsSettings": {
+                    "headers": {},
+                    "path": "/media/video_A9f3K5"
+                }
+            },
+            "mux": {
+                "enabled": true
+            }
+        },
+        {
+            "listen": "127.0.0.1",
+            "port": 8080,
+            "protocol": "dokodemo-door",
+            "settings": {
+                "address": "127.0.0.1"
+            },
+            "tag": "api"
+        }
+    ],
+    "outbounds": [
+        {
+            "tag": "direct",
+            "protocol": "freedom",
+            "settings": {}
+        }
+    ],
+    "dns": {
+        "servers": [
+            "8.8.8.8",
+            "8.8.4.4",
+            "localhost"
+        ]
+    },
+    "stats": {},
+    "api": {
+        "tag": "api",
+        "services": [
+            "HandlerService",
+            "LoggerService",
+            "StatsService"
+        ]
+    },
+    "policy": {
+        "levels": {
+            "0": {
+                "statsUserUplink": true,
+                "statsUserDownlink": true
+            }
+        },
+        "system": {
+            "statsInboundUplink": true,
+            "statsInboundDownlink": true,
+            "statsOutboundUplink": true,
+            "statsOutboundDownlink": true
+        }
+    },
+    "routing": {
+        "rules": [
+            {
+                "inboundTag": [
+                    "api"
+                ],
+                "outboundTag": "api",
+                "type": "field"
+            }
+        ],
+        "domainStrategy": "AsIs"
+    }
+}
