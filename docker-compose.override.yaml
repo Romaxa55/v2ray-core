@@ -4,8 +4,6 @@ services:
   v2ray:
     ports:
       - "8282:8443"
-    networks:
-      - public
     volumes:
       - ./build_assets/template.json:/etc/v2ray/template.json
     labels:
@@ -20,6 +18,3 @@ services:
       traefik.http.middlewares.websocket.headers.customrequestheaders.Connection: Upgrade
       traefik.http.routers.v2ray.middlewares: websocket
 
-networks:
-  public:
-    external: true
