@@ -22,12 +22,8 @@
                 "enabled": true
               },
             "streamSettings": {
-                "network": "ws",
-                "security": "none",
-                "wsSettings": {
-                    "headers": {},
-                    "path": "/ws/video_A9f3K5"
-                }
+                "network": "tcp",
+                "security": "none"
             }
         },
         {
