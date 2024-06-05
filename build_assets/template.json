@@ -7,22 +7,27 @@
     "inbounds": [
         {
             "tag": "tcp",
-            "listen": "0.0.0.0",
+            "listen": "127.0.0.1",
             "port": 8443,
             "protocol": "vmess",
             "settings": {
-                "clients": []
+                "clients": [],
+                "disableInsecureEncryption": false
             },
+            "sniffing": {
+                "destOverride": [
+                  "http",
+                  "tls"
+                ],
+                "enabled": true
+              },
             "streamSettings": {
                 "network": "ws",
                 "security": "none",
                 "wsSettings": {
                     "headers": {},
-                    "path": "/media/video_A9f3K5"
+                    "path": "/ws/video_A9f3K5"
                 }
-            },
-            "mux": {
-                "enabled": true
             }
         },
         {
@@ -40,6 +45,11 @@
             "tag": "direct",
             "protocol": "freedom",
             "settings": {}
+        },
+        {
+          "protocol": "blackhole",
+          "settings": {},
+          "tag": "blocked"
         }
     ],
     "dns": {
