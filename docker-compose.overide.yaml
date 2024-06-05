@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  v2ray:
+    ports: []
+    labels:
+      #### Labels define the behavior and rules of the traefik proxy for this container ####
+      traefik.enable: true
+      traefik.http.routers.v2ray.tls: true
+      traefik.http.routers.v2ray.rule: Host(`${APP_DOMAIN}`)
+      traefik.http.routers.v2ray.entrypoints: websecure
+      traefik.http.routers.v2ray.tls.certresolver: myresolver
+      traefik.http.services.v2ray.loadbalancer.server.port: 8443
