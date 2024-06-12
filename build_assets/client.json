@@ -1,89 +1,58 @@
 {
-  "routing" : {
-    "name" : "all_to_main",
-    "domainStrategy" : "AsIs",
-    "rules" : [
-      {
-        "type" : "field",
-        "outboundTag" : "Oslo",
-        "port" : "0-65535"
-      }
-    ]
-  },
-  "inbounds" : [
+  "inbounds": [
     {
-      "listen" : "127.0.0.1",
-      "protocol" : "socks",
-      "sniffing": {
-        "enabled": true,
-        "destOverride": ["http", "tls"]
-      },
-      "settings" : {
-        "ip" : "127.0.0.1",
-        "auth" : "noauth",
-        "udp" : true
-      },
-      "tag" : "socksinbound",
-      "port" : 1081
-    },
-    {
-      "listen" : "127.0.0.1",
-      "protocol" : "http",
-      "settings" : {
-        "timeout" : 0
-      },
-      "tag" : "httpinbound",
-      "port" : 8001
+        "port": 1080, // SOCKS proxy port, you need to configure the proxy in the browser and point to this port
+        "listen": "127.0.0.1",
+        "protocol": "socks",
+        "settings": {
+            "udp": true
+        }
     }
   ],
-  "dns" : {
-    "servers" : [
-      "localhost"
-    ]
-  },
-  "log" : {
-    "error" : "error.log",
-    "loglevel" : "debug",
-    "access" : "access.log"
-  },
-  "outbounds" : [
+  "outbounds": [
     {
-      "sendThrough" : "0.0.0.0",
-      "mux" : {
-        "enabled" : false,
-        "concurrency" : 8
-      },
-      "protocol" : "vmess",
-      "settings" : {
-        "vnext" : [
+      "settings": {
+        "vnext": [
           {
-            "address" : "127.0.0.1",
-            "users" : [
+            "users": [
               {
-                "id" : "070ba711-304e-49d4-9d09-eb7bac67d8b0",
-                "email": "love@v2ray.com",
-                "password": "password",
-                "alterId" : 0,
-                "security" : "auto",
-                "level" : 0
+                "level": 8,
+                "email": "",
+                "alterId": 32,
+                "id": "c873a7f5-7e58-4e1d-a11b-86b2d5d733f5",
+                "security": "auto"
               }
             ],
-            "port" : 1310
+            "port": 443,
+            "address": "stream.roshamagin.site"
           }
         ]
       },
-      "tag" : "Oslo",
       "streamSettings": {
-        "network": "mkcp",
-        "kcpSettings": {
-          "uplinkCapacity": 5,
-          "downlinkCapacity": 100,
-          "congestion": true,
-          "header": {
-            "type": "srtp"
-          }
+        "network": "ws",
+        "security": "tls",
+        "wsSettings": {
+          "headers": {
+            "host": ""
+          },
+          "path": "/media/cam_stream_1"
+        },
+        "tlsSettings": {
+          "allowInsecure": false,
+          "fingerprint": "ios",
+          "alpn": [
+            "h2",
+            "h3",
+            "http/1.1"
+          ]
         }
-      }
+      },
+      "protocol": "vmess"
     }
-  ]
+  ],
+  "routing": {
+    "domainStrategy": "IPOnDemand",
+    "rules": [],
+    "balancers": []
+  }
 }
